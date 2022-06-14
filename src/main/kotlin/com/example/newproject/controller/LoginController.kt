@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession
 
 @Controller
 @RequestMapping("/login")
-class LoginComtroller{
+class LoginController{
 
     //로그아웃 및 세션 종료
     @GetMapping("/logout")
