@@ -27,13 +27,10 @@ class BoardRepositoryTest(
 
     @Test
     fun save() {
-            for (i in 31..200){
-                val boardDto = BoardDto()
-                boardDto.bno = i
-                boardDto.writer = "$i"
-                boardDto.title = "$i"
-                boardDto.content = "$i"
-                boardDtoRepository.save(boardDto)
+            val list:List<BoardDto> = boardDtoRepository.findByTitleContaining("asdf")
+            val iterator = list.listIterator()
+            while (iterator.hasNext()){
+                println(iterator.next())
             }
         }
     }

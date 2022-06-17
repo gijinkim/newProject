@@ -1,34 +1,25 @@
 package com.example.newproject.service
 
 import com.example.newproject.domain.BoardDto
+import com.example.newproject.domain.BoardDtoRepository
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Sort
+import org.springframework.stereotype.Service
 
-interface BoardService {
+@Service
+class BoardService{
 
-    @Throws(Exception::class)
-    fun getCount():Int
+    @Autowired
+    lateinit var boardDtoRepository: BoardDtoRepository
 
-    @Throws(Exception::class)
-    fun remove(bno:Int, writer:String):Int
+    fun pageList(page:Int) : Page<BoardDto>{
+        return boardDtoRepository.findAll(PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "bno")))
+    }
 
-    @Throws(Exception::class)
-    fun write(boardDto: BoardDto):Int
-
-    @Throws(Exception::class)
-    fun getList():List<BoardDto>
-
-    @Throws(Exception::class)
-    fun read(bno: Int):Int
-
-    @Throws(Exception::class)
-    fun getPage(map: Map<*,*>):List<BoardDto>
-
-    @Throws(Exception::class)
-    fun modify(boardDto: BoardDto):Int
-
-    @Throws(Exception::class)
-    fun getSearchResultPage(sc:SearchCondition):List<BoardDto>
-
-    @Throws(Exception::class)
-    fun getSearchResultCnt(sc:SearchCondition):Int
-
+    fun searchList(keyword:String):List<BoardDto>{
+        val boardDtoList:List<BoardDto> = boardDtoRepository.findByTitleContaining(keyword)
+        return boardDtoList
+    }
 }

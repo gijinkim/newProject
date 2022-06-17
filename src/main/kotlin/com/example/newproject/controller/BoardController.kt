@@ -21,7 +21,14 @@ class BoardController {
     lateinit var boardService: BoardService
 
     @GetMapping("/list")
-    fun list(m:Model?, @RequestParam(required = false, defaultValue = "0", value = "page") page:Int):String{
+    fun list(option:String?,keyword:String?,m:Model?, @RequestParam(required = false, defaultValue = "0", value = "page") page:Int):String{
+
+
+        when(option){
+//            "A" -> {val listPage = boardService.pageList(page)}
+//            "T" -> keyword?.let { boardService.searchList(it) }
+//            "W" -> keyword?.let { boardService.searchList(it) }
+        }
 
         val listPage:Page<BoardDto> = boardService.pageList(page)
 
@@ -37,6 +44,8 @@ class BoardController {
         m?.addAttribute("endPage", endPage)
         m?.addAttribute("showPrev", showPrev)
         m?.addAttribute("showNext", showNext)
+
+
 
 
 
