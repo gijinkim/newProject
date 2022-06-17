@@ -1,5 +1,8 @@
 package com.example.newproject.controller
 
+import com.example.newproject.domain.UserDto
+import com.example.newproject.domain.UserRepository
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -16,6 +19,9 @@ import javax.servlet.http.HttpSession
 @Controller
 @RequestMapping("/login")
 class LoginController{
+
+    @Autowired
+    lateinit var userRepository:UserRepository
 
     //로그아웃 및 세션 종료
     @GetMapping("/logout")
@@ -64,9 +70,24 @@ class LoginController{
         return "redirect:/"
     }
 
+    fun loginCheck(id:String, pwd:String):Boolean{
+
+        lateinit var userDto: UserDto
+
+        try {
+            userDto = userRepository!!.findById(id).get()
+        }catch (e:Exception){
+            e.printStackTrace()
+            return false
+        }
+
+        return userDto.pwd == pwd
+    }
+
 }
 
+
+
+
+
 //로그인 회원정보 확인
-fun loginCheck(id:String, pwd:String):Boolean{
-    return true
-}

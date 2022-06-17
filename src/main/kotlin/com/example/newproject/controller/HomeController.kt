@@ -14,5 +14,9 @@ class HomeController {
         System.out.println("begin")
         return "home"
     }
+
+    fun add(a:Int, b :Int):Int{
+        return a + b
+    }
 }
 

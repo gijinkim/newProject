@@ -21,11 +21,14 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+//    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.apache.tomcat.embed:tomcat-embed-jasper")
     implementation("javax.servlet:jstl")
-
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.1.0")
+    testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.1.0")
+    implementation("org.postgresql:postgresql:42.4.0")
 }
 
 tasks.withType<KotlinCompile> {

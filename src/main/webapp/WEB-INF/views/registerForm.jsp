@@ -29,7 +29,7 @@
         <h2>서울 아마추어 축구인</h2>
         <h2>회원가입</h2>
     </div>
-    <form:form class="form" modelAttribute="user">
+    <form class="form" method="post" action="<c:url value='/register/save'/>">
         <div id="msg" class="msg"><form:errors path="id"/></div>
         <label for="">아이디</label>
         <input class="input-field" type="text" name="id" placeholder="8~12자리의 영대소문자와 숫자 조합">
@@ -44,7 +44,7 @@
         <label for="">전화번호</label>
         <input class="input-field" type="text" name="phone" placeholder="010-1111-1111">
         <button>회원 가입</button>
-    </form:form>
+    </form>
 </div>
 <script>
     function formCheck(frm) {
