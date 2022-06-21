@@ -1,9 +1,6 @@
 package com.example.newproject.controller
 
-import com.example.newproject.domain.BoardDto
-import com.example.newproject.domain.BoardDtoRepository
-import com.example.newproject.domain.UserDto
-import com.example.newproject.domain.UserRepository
+import com.example.newproject.domain.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -24,6 +21,7 @@ class BoardRepositoryTest(
 ) {
     @Autowired
     lateinit var boardDtoRepository: BoardDtoRepository
+
 
 
     //제목과 내용으로 찾기 테스트
@@ -58,13 +56,13 @@ class BoardRepositoryTest(
 
     //게시물 가져오기 테스트
     @Test
-    fun read(){
-        val boardDto:BoardDto = boardDtoRepository.getBoardDtoByBno(1)
+    fun read() {
+        val boardDto: BoardDto = boardDtoRepository.getBoardDtoByBno(1)
         println(boardDto)
     }
 
     @Test
-    fun write(){
+    fun write() {
         val boardDto = BoardDto()
         boardDto.bno = 1
         boardDto.title = "war"
@@ -75,12 +73,8 @@ class BoardRepositoryTest(
 
     @Test
     @Transactional
-    fun remove(){
+    fun remove() {
         boardDtoRepository.deleteByBnoAndWriter(2, "jin")
-    }
-
-    @Test
-    fun re(){
     }
 }
 

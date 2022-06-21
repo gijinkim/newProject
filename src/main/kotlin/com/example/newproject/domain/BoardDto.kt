@@ -15,7 +15,7 @@ data class BoardDto(
     var reg_date: Int? = null
 ){
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var bno: Int = 0
 }
 
